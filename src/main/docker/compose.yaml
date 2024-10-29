@@ -1,0 +1,16 @@
+name: samurai
+services:
+  postgres:
+    container_name: samurai_db
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=samurai'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=samurai'
+    volumes:
+      - C:\Users\Youcode\Desktop\pgdata:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+volumes:
+  postgres_data:
+    driver: local
