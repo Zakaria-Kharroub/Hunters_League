@@ -1,7 +1,7 @@
-package com.example.hunters_league.domaine;
+package com.example.hunters_league.domain;
 
-import com.example.hunters_league.domaine.enums.Difficulty;
-import com.example.hunters_league.domaine.enums.SpeciesType;
+import com.example.hunters_league.domain.enums.Difficulty;
+import com.example.hunters_league.domain.enums.SpeciesType;
 import jakarta.persistence.*;
 import lombok.*;
 

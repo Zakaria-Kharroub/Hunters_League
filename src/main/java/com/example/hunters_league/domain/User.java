@@ -1,6 +1,6 @@
-package com.example.hunters_league.domaine;
+package com.example.hunters_league.domain;
 
-import com.example.hunters_league.domaine.enums.Role;
+import com.example.hunters_league.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

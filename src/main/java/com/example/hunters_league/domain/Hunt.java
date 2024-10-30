@@ -1,4 +1,4 @@
-package com.example.hunters_league.domaine;
+package com.example.hunters_league.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

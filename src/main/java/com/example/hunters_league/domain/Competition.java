@@ -1,10 +1,9 @@
-package com.example.hunters_league.domaine;
+package com.example.hunters_league.domain;
 
-import com.example.hunters_league.domaine.enums.SpeciesType;
+import com.example.hunters_league.domain.enums.SpeciesType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
