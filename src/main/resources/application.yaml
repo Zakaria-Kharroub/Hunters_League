@@ -15,4 +15,6 @@ spring:
         open-in-view: false
         show_sql: true
 
+
+
 #  port: 8080  # Change this to your desired port
