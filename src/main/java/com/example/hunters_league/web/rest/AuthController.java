@@ -1,8 +1,8 @@
 package com.example.hunters_league.web.rest;
 
 import com.example.hunters_league.domain.User;
-import com.example.hunters_league.service.imp.AuthService;
-import com.example.hunters_league.service.imp.dto.UserDTO;
+import com.example.hunters_league.service.AuthService;
+import com.example.hunters_league.service.dto.UserDTO;
 import com.example.hunters_league.web.vm.UserLoginVM;
 import com.example.hunters_league.web.vm.UserRegisterVM;
 import com.example.hunters_league.web.vm.mapper.UserMapper;
@@ -36,7 +36,7 @@ public class AuthController {
         if(islogedIn) {
             return ResponseEntity.ok("Login Success");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+            return  ResponseEntity.ok("Login faild");
         }
 
     }
