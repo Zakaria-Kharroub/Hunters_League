@@ -6,6 +6,8 @@ import com.example.hunters_league.service.UserService;
 import com.example.hunters_league.web.errors.user.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -21,5 +23,13 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
         return true;
     }
+
+    @Override
+    public User findById(String id) {
+        return userRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new UserNotFoundException("user not found"));
+    }
+
+
 
 }

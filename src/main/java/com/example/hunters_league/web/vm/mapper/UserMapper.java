@@ -13,4 +13,7 @@ public interface UserMapper {
     User toEntity(UserRegisterVM userVM);
     UserDTO toDTO(User user);
     User toEntity(UserDeleteVM userDeleteVM);
+
+
+
 }

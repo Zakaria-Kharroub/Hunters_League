@@ -1,21 +1,23 @@
 package com.example.hunters_league.web.rest;
 
+import com.example.hunters_league.domain.User;
 import com.example.hunters_league.service.UserService;
+import com.example.hunters_league.service.dto.UserDTO;
 import com.example.hunters_league.web.vm.UserDeleteVM;
+import com.example.hunters_league.web.vm.mapper.UserMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @PostMapping("/delete")
@@ -26,5 +28,13 @@ public class UserController {
         } else {
             return ResponseEntity.ok("User not found");
         }
+    }
+
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<UserDTO> find(@PathVariable String id) {
+        User user = userService.findById(id);
+        UserDTO userDTO = userMapper.toDTO(user);
+        return ResponseEntity.ok(userDTO);
     }
 }
