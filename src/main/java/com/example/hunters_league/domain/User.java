@@ -2,6 +2,7 @@ package com.example.hunters_league.domain;
 
 import com.example.hunters_league.domain.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+
+    @NotBlank
     private String username;
 
     private String password;
