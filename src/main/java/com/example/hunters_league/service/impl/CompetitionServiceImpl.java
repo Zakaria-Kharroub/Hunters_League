@@ -1,6 +1,7 @@
 package com.example.hunters_league.service.impl;
 
 import com.example.hunters_league.domain.Competition;
+import com.example.hunters_league.domain.User;
 import com.example.hunters_league.repository.CompetitionRepository;
 import com.example.hunters_league.service.CompetitionService;
 import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
@@ -21,5 +22,10 @@ public class CompetitionServiceImpl implements CompetitionService {
     public Competition findById(String id) {
         return competitionRepository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new CompetitionNotFoundException("Competition not found"));
+    }
+
+    @Override
+    public Competition save(Competition competition){
+        return competitionRepository.save(competition);
     }
 }
