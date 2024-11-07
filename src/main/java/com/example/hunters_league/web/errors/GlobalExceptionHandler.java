@@ -1,6 +1,7 @@
 package com.example.hunters_league.web.errors;
 
 import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
+import com.example.hunters_league.web.errors.participation.ParticipationNotFoundException;
 import com.example.hunters_league.web.errors.user.IncorrectPasswordException;
 import com.example.hunters_league.web.errors.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,12 @@ public class GlobalExceptionHandler {
 //   ----------------- competition------------
     @ExceptionHandler(CompetitionNotFoundException.class)
     public ResponseEntity<String> handleCompetitionNotFoundException(CompetitionNotFoundException ex){
+        return  new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
+//    ----------------- participation------------
+    @ExceptionHandler(ParticipationNotFoundException.class)
+    public ResponseEntity<String> handleParticipationNotFoundException(ParticipationNotFoundException ex){
         return  new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 }
