@@ -1,11 +1,13 @@
 package com.example.hunters_league.service.impl;
 
 import com.example.hunters_league.domain.Species;
+import com.example.hunters_league.domain.enums.SpeciesType;
 import com.example.hunters_league.repository.SpeciesRepository;
 import com.example.hunters_league.service.SpeciesService;
 import com.example.hunters_league.web.errors.species.SpeciesTypeNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,4 +32,15 @@ public class SpeciesServiceImpl implements SpeciesService {
         }
         return speciesRepository.save(species);
     }
+
+    @Override
+    public List<Species> findAll(){
+        return speciesRepository.findAll();
+    }
+
+    @Override
+    public List<Species> findByCategory(SpeciesType category){
+        return speciesRepository.findByCategory(category);
+    }
+
 }
