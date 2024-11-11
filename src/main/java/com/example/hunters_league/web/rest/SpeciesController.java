@@ -12,9 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-    @RestController
+@RestController
 @RequestMapping("/api/species")
 public class SpeciesController {
 
@@ -48,9 +49,9 @@ public class SpeciesController {
     }
 
 
-        @GetMapping("/category/{category}")
-        public ResponseEntity<List<SpeciesDTO>> findByCategory(@PathVariable String category) {
-            SpeciesType speciesType;
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<SpeciesDTO>> findByCategory(@PathVariable String category) {
+        SpeciesType speciesType;
             try {
                 speciesType = SpeciesType.valueOf(category);
             } catch (IllegalArgumentException e) {
@@ -61,7 +62,16 @@ public class SpeciesController {
                     .map(speciesMapper::toDTO)
                     .collect(Collectors.toList());
             return ResponseEntity.ok(speciesDTOList);
-        }
+    }
+    @GetMapping("find/{id}")
+    public ResponseEntity<SpeciesDTO>findById(@PathVariable UUID id){
+        Species species = speciesService.findById(id.toString());
+        SpeciesDTO speciesDTO = speciesMapper.toDTO(species);
+        return ResponseEntity.ok(speciesDTO);
+    }
+
+
+
 
 
 
