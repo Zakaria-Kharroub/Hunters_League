@@ -70,6 +70,14 @@ public class SpeciesController {
         return ResponseEntity.ok(speciesDTO);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<SpeciesDTO> updateById(@PathVariable UUID id, @RequestBody SpeciesVM speciesVM) {
+        Species species = speciesMapper.toEntity(speciesVM);
+        Species updatedSpecies = speciesService.updateById(id, species);
+        SpeciesDTO speciesDTO = speciesMapper.toDTO(updatedSpecies);
+        return ResponseEntity.ok(speciesDTO);
+    }
+
 
 
 

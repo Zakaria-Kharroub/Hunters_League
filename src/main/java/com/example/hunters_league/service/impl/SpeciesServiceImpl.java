@@ -43,4 +43,19 @@ public class SpeciesServiceImpl implements SpeciesService {
         return speciesRepository.findByCategory(category);
     }
 
+    @Override
+    public Species updateById(UUID id, Species species) {
+        Species existingSpecies = speciesRepository.findById(id)
+                .orElseThrow(() -> new SpeciesTypeNotFoundException("specis not found"));
+
+        existingSpecies.setName(species.getName());
+        existingSpecies.setCategory(species.getCategory());
+        existingSpecies.setMinimumWeight(species.getMinimumWeight());
+        existingSpecies.setDifficulty(species.getDifficulty());
+        existingSpecies.setPoints(species.getPoints());
+        return speciesRepository.save(existingSpecies);
+    }
+
+
+
 }
