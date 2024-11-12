@@ -42,18 +42,7 @@ public class ParticipationController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody ParticipationVM participationVM) {
-        try {
-            User user = userService.findById(participationVM.getUserId().toString());
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        }
-
-        try {
-            Competition competition = competitionService.findById(participationVM.getCompetitionId().toString());
-        } catch (CompetitionNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Competition not found");
-        }
+    public ResponseEntity<ParticipationDTO> save(@RequestBody  ParticipationVM participationVM) {
 
         Participation participation = participationMapper.toEntity(participationVM);
         Participation savedParticipation = participationService.save(participation);
