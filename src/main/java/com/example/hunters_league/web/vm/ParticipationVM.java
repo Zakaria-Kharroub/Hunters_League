@@ -9,4 +9,5 @@ public class ParticipationVM {
     private UUID userId;
     private UUID competitionId;
     private Double score;
+
 }
