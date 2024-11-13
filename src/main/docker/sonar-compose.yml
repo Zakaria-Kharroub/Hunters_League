@@ -1,0 +1,29 @@
+version: '3'
+services:
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    environment:
+      - SONAR_QUIET=true
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarnet
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: sonar-postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    networks:
+      - sonarnet
+    ports:
+      - "5437:5432"
+
+networks:
+  sonarnet:
+    driver: bridge
