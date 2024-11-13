@@ -5,6 +5,9 @@ import com.example.hunters_league.domain.enums.SpeciesType;
 import com.example.hunters_league.repository.SpeciesRepository;
 import com.example.hunters_league.service.SpeciesService;
 import com.example.hunters_league.web.errors.species.SpeciesTypeNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,6 +60,12 @@ public class SpeciesServiceImpl implements SpeciesService {
         return speciesRepository.save(existingSpecies);
 
     }
+
+    @Override
+    public Page<Species> findAll(Pageable pageable) {
+        return speciesRepository.findAll(pageable);
+    }
+
 
 
 

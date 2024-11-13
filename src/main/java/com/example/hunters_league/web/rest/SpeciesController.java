@@ -7,6 +7,9 @@ import com.example.hunters_league.service.dto.SpeciesDTO;
 import com.example.hunters_league.web.errors.species.SpeciesTypeNotFoundException;
 import com.example.hunters_league.web.vm.SpeciesVM;
 import com.example.hunters_league.web.vm.mapper.SpeciesMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,6 +79,15 @@ public class SpeciesController {
         Species updatedSpecies = speciesService.updateById(id, species);
         SpeciesDTO speciesDTO = speciesMapper.toDTO(updatedSpecies);
         return ResponseEntity.ok(speciesDTO);
+    }
+
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<SpeciesDTO>> findAllPaged(@RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Species> speciesPage = speciesService.findAll(pageable);
+        Page<SpeciesDTO> speciesDTOPage = speciesPage.map(speciesMapper::toDTO);
+        return ResponseEntity.ok(speciesDTOPage);
     }
 
 
