@@ -4,6 +4,7 @@ import com.example.hunters_league.domain.Competition;
 import com.example.hunters_league.domain.User;
 import com.example.hunters_league.repository.CompetitionRepository;
 import com.example.hunters_league.service.CompetitionService;
+import com.example.hunters_league.service.dto.CompetitionDTO;
 import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,10 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Override
     public Competition save(Competition competition){
         return competitionRepository.save(competition);
+    }
+
+    @Override
+    public CompetitionDTO getCompetitionWithParticipationsCount(UUID id){
+        return competitionRepository.getCompetitionWithParticipationsCount(id);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/competition")
 public class CompetitionController {
@@ -34,5 +36,11 @@ public class CompetitionController {
         Competition savedCompetition = competitionService.save(competition);
         CompetitionDTO competitionDTO = competitionMapper.toDTO(savedCompetition);
         return new ResponseEntity<>(competitionDTO, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/getCompetitionWithParticipationsCount/{id}")
+    public ResponseEntity<CompetitionDTO> getCompetitionWithParticipationsCount(@PathVariable UUID id) {
+        CompetitionDTO competitionDTO = competitionService.getCompetitionWithParticipationsCount(id);
+        return ResponseEntity.ok(competitionDTO);
     }
 }
