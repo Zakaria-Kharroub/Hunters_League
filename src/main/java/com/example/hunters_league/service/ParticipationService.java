@@ -7,4 +7,7 @@ import java.util.UUID;
 public interface ParticipationService {
     Participation findById(UUID id);
     Participation save(Participation participation);
+
+//    je veux update
+    Participation update(Participation participation);
 }
