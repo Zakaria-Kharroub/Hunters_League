@@ -38,19 +38,22 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public Participation save(Participation participation) {
 
-        try{
-            User user = userService.findById(participation.getUser().getId().toString());
-        }catch (UserNotFoundException e){
+        User user = userService.findById(participation.getUser().getId().toString());
+        if (user == null) {
             throw new UserNotFoundException("user not found");
         }
 
-        try {
-            Competition competition =competitionService.findById(participation.getCompetition().getId().toString());
-        }catch (CompetitionNotFoundException e){
+        Competition competition = competitionService.findById(participation.getCompetition().getId().toString());
+        if (competition == null) {
             throw new CompetitionNotFoundException("competition not found");
         }
 
 
+        return participationRepository.save(participation);
+    }
+
+    @Override
+    public Participation update(Participation participation) {
         return participationRepository.save(participation);
     }
 }

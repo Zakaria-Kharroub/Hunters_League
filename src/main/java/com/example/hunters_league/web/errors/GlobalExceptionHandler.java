@@ -2,6 +2,7 @@ package com.example.hunters_league.web.errors;
 
 import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
 import com.example.hunters_league.web.errors.participation.ParticipationNotFoundException;
+import com.example.hunters_league.web.errors.species.SpeciesNotFoundException;
 import com.example.hunters_league.web.errors.species.SpeciesTypeNotFoundException;
 import com.example.hunters_league.web.errors.user.IncorrectPasswordException;
 import com.example.hunters_league.web.errors.user.UserNotFoundException;
@@ -47,6 +48,11 @@ public class GlobalExceptionHandler {
 //    species
     @ExceptionHandler(SpeciesTypeNotFoundException.class)
     public ResponseEntity<String> handleSpeciesTypeNotFoundException(SpeciesTypeNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(SpeciesNotFoundException.class)
+    public ResponseEntity<String> handleSpeciesNotFoundException(SpeciesNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
