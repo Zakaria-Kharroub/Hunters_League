@@ -1,16 +1,19 @@
-name: samurai
+name: huntersecurity #db_name
 services:
-  postgres:
-    container_name: samurai_db
-    image: 'postgres:17'
+  postgresql:
+    image: postgres:16.1
+
     environment:
-      - 'POSTGRES_DB=samurai'
-      - 'POSTGRES_PASSWORD=password'
-      - 'POSTGRES_USER=samurai'
-    volumes:
-      - C:\Users\Youcode\Desktop\pgdata:/var/lib/postgresql/data
+      - POSTGRES_USER=huntersecurity
+      - POSTGRES_PASSWORD=huntersecurity
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
     ports:
-      - '5433:5432'
-volumes:
-  postgres_data:
-    driver: local
+      - 127.0.0.1:5432:5432
+
+#  docker-compose -f postgresql.yml up

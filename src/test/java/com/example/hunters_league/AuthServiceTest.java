@@ -1,6 +1,6 @@
 package com.example.hunters_league;
 
-import com.example.hunters_league.domain.User;
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.repository.AuthRepository;
 import com.example.hunters_league.service.impl.AuthServiceImpl;
 import com.example.hunters_league.web.errors.user.IncorrectPasswordException;
@@ -32,59 +32,59 @@ class AuthServiceTest {
 
     @Test
     void testSaveUserUnique() {
-        User user = new User();
-        user.setUsername("newUser");
-        user.setPassword("validPassword123");
-        user.setEmail("newuser@example.com");
+        AppUser appUser = new AppUser();
+        appUser.setUsername("newUser");
+        appUser.setPassword("validPassword123");
+        appUser.setEmail("newuser@example.com");
 
-        when(authRepository.save(user)).thenReturn(user);
+        when(authRepository.save(appUser)).thenReturn(appUser);
 
-        User registeredUser = authService.register(user);
+        AppUser registeredAppUser = authService.register(appUser);
 
-        assertNotNull(registeredUser);
-        assertEquals(user.getUsername(), registeredUser.getUsername());
-        verify(authRepository, times(1)).save(user);
+        assertNotNull(registeredAppUser);
+        assertEquals(appUser.getUsername(), registeredAppUser.getUsername());
+        verify(authRepository, times(1)).save(appUser);
     }
 
     @Test
     void testLoginUserNotFound() {
-        User userLogin = new User();
-        userLogin.setUsername("nonExistentUser");
-        userLogin.setPassword("password");
+        AppUser appUserLogin = new AppUser();
+        appUserLogin.setUsername("nonExistentUser");
+        appUserLogin.setPassword("password");
 
-        when(authRepository.findByUsername(userLogin.getUsername())).thenReturn(Optional.empty());
+        when(authRepository.findByUsername(appUserLogin.getUsername())).thenReturn(Optional.empty());
 
-        assertThrows(UserNotFoundException.class, () -> authService.login(userLogin));
+        assertThrows(UserNotFoundException.class, () -> authService.login(appUserLogin));
     }
 
     @Test
     void TestLoginIncorrectPassword() {
-        User userLogin = new User();
-        userLogin.setUsername("existingUser");
-        userLogin.setPassword("wrongPassword");
+        AppUser appUserLogin = new AppUser();
+        appUserLogin.setUsername("existingUser");
+        appUserLogin.setPassword("wrongPassword");
 
-        User foundUser = new User();
-        foundUser.setUsername("existingUser");
-        foundUser.setPassword(BCrypt.hashpw("correctPassword", BCrypt.gensalt()));
+        AppUser foundAppUser = new AppUser();
+        foundAppUser.setUsername("existingUser");
+        foundAppUser.setPassword(BCrypt.hashpw("correctPassword", BCrypt.gensalt()));
 
-        when(authRepository.findByUsername(userLogin.getUsername())).thenReturn(Optional.of(foundUser));
+        when(authRepository.findByUsername(appUserLogin.getUsername())).thenReturn(Optional.of(foundAppUser));
 
-        assertThrows(IncorrectPasswordException.class, () -> authService.login(userLogin));
+        assertThrows(IncorrectPasswordException.class, () -> authService.login(appUserLogin));
     }
 
     @Test
 
     void TestReturnTrueWhenCredentialsAreCorrect() {
-        User userLogin = new User();
-        userLogin.setUsername("validUser");
-        userLogin.setPassword("validPassword");
+        AppUser appUserLogin = new AppUser();
+        appUserLogin.setUsername("validUser");
+        appUserLogin.setPassword("validPassword");
 
-        User foundUser = new User();
-        foundUser.setUsername("validUser");
-        foundUser.setPassword(BCrypt.hashpw("validPassword", BCrypt.gensalt()));
+        AppUser foundAppUser = new AppUser();
+        foundAppUser.setUsername("validUser");
+        foundAppUser.setPassword(BCrypt.hashpw("validPassword", BCrypt.gensalt()));
 
-        when(authRepository.findByUsername(userLogin.getUsername())).thenReturn(Optional.of(foundUser));
+        when(authRepository.findByUsername(appUserLogin.getUsername())).thenReturn(Optional.of(foundAppUser));
 
-        assertTrue(authService.login(userLogin));
+        assertTrue(authService.login(appUserLogin));
     }
 }

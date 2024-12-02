@@ -1,8 +1,8 @@
 package com.example.hunters_league.service.impl;
 
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.domain.Competition;
 import com.example.hunters_league.domain.Participation;
-import com.example.hunters_league.domain.User;
 import com.example.hunters_league.repository.ParticipationRepository;
 import com.example.hunters_league.service.CompetitionService;
 import com.example.hunters_league.service.ParticipationService;
@@ -10,8 +10,6 @@ import com.example.hunters_league.service.UserService;
 import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
 import com.example.hunters_league.web.errors.participation.ParticipationNotFoundException;
 import com.example.hunters_league.web.errors.user.UserNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -38,8 +36,8 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public Participation save(Participation participation) {
 
-        User user = userService.findById(participation.getUser().getId().toString());
-        if (user == null) {
+        AppUser appUser = userService.findById(participation.getAppUser().getId().toString());
+        if (appUser == null) {
             throw new UserNotFoundException("user not found");
         }
 

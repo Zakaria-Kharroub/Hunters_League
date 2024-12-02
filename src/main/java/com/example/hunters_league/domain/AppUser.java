@@ -16,7 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+@Table(name = "user")
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -44,7 +45,7 @@ public class User {
 
     private LocalDateTime licenseExpirationDate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser")
     private List<Participation> participations;
 
 }

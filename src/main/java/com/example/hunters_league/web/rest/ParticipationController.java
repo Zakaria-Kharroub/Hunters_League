@@ -1,17 +1,12 @@
 package com.example.hunters_league.web.rest;
 
-import com.example.hunters_league.domain.Competition;
 import com.example.hunters_league.domain.Participation;
-import com.example.hunters_league.domain.User;
 import com.example.hunters_league.service.CompetitionService;
 import com.example.hunters_league.service.ParticipationService;
 import com.example.hunters_league.service.UserService;
 import com.example.hunters_league.service.dto.ParticipationDTO;
-import com.example.hunters_league.web.errors.competition.CompetitionNotFoundException;
-import com.example.hunters_league.web.errors.user.UserNotFoundException;
 import com.example.hunters_league.web.vm.ParticipationVM;
 import com.example.hunters_league.web.vm.mapper.ParticipationMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.example.hunters_league.service.impl;
 
-import com.example.hunters_league.domain.User;
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.repository.AuthRepository;
 import com.example.hunters_league.service.AuthService;
 import com.example.hunters_league.web.errors.user.IncorrectPasswordException;
@@ -17,11 +17,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean login(User userLogin) {
-        User user = authRepository.findByUsername(userLogin.getUsername())
+    public boolean login(AppUser appUserLogin) {
+        AppUser appUser = authRepository.findByUsername(appUserLogin.getUsername())
                 .orElseThrow(() -> new UserNotFoundException("user not found"));
 
-        if (BCrypt.checkpw(userLogin.getPassword(), user.getPassword())) {
+        if (BCrypt.checkpw(appUserLogin.getPassword(), appUser.getPassword())) {
             return true;
         } else {
             throw new IncorrectPasswordException("Incorrect password");
@@ -29,9 +29,9 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public User register(User user) {
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        user.setPassword(hashedPassword);
-        return authRepository.save(user);
+    public AppUser register(AppUser appUser) {
+        String hashedPassword = BCrypt.hashpw(appUser.getPassword(), BCrypt.gensalt());
+        appUser.setPassword(hashedPassword);
+        return authRepository.save(appUser);
     }
 }
