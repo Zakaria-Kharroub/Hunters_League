@@ -7,6 +7,7 @@ import com.example.hunters_league.web.vm.CompetitionSaveVM;
 import com.example.hunters_league.web.vm.mapper.CompetitionMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -23,6 +24,10 @@ public class CompetitionController {
         this.competitionService = competitionService;
     }
 
+
+
+
+    @PreAuthorize("hasRole('MEMBER')")
     @GetMapping("/find/{id}")
     public ResponseEntity<CompetitionDTO> find(@PathVariable String id) {
         Competition competition = competitionService.findById(id);

@@ -31,6 +31,7 @@ public class SpeciesController {
         this.speciesMapper = speciesMapper;
     }
 
+    @PreAuthorize("hasRole('JURY')")
     @PostMapping("/save")
     public ResponseEntity<SpeciesDTO> save(@RequestBody SpeciesVM speciesVM) {
 //        if (speciesVM.getCategory() == null) {
@@ -43,7 +44,7 @@ public class SpeciesController {
         return new ResponseEntity<>(speciesDTO, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('JURY')")
     @GetMapping("/")
     public ResponseEntity<List<SpeciesDTO>> findAll() {
         List<Species> speciesList = speciesService.findAll();
@@ -75,6 +76,9 @@ public class SpeciesController {
         return ResponseEntity.ok(speciesDTO);
     }
 
+
+
+    @PreAuthorize("hasRole('JURY')")
     @PutMapping("/update/{id}")
     public ResponseEntity<SpeciesDTO> updateById(@PathVariable UUID id, @RequestBody SpeciesVM speciesVM) {
         Species species = speciesMapper.toEntity(speciesVM);

@@ -14,6 +14,7 @@ public enum Role {
             Permission.CAN_VIEW_COMPETITIONS,
             Permission.CAN_STORE
     )),
+
     ADMIN(Set.of(
             Permission.CAN_PARTICIPATE,
             Permission.CAN_VIEW_RANKINGS,
