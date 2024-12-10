@@ -1,6 +1,6 @@
 package com.example.hunters_league.web.rest;
 
-import com.example.hunters_league.domain.User;
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.service.UserService;
 import com.example.hunters_league.service.dto.UserDTO;
 import com.example.hunters_league.web.vm.UserDeleteVM;
@@ -33,15 +33,15 @@ public class UserController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<UserDTO> find(@PathVariable String id) {
-        User user = userService.findById(id);
-        UserDTO userDTO = userMapper.toDTO(user);
+        AppUser appUser = userService.findById(id);
+        UserDTO userDTO = userMapper.toDTO(appUser);
         return ResponseEntity.ok(userDTO);
     }
 
     @GetMapping("/findbyemail/{email}")
     public ResponseEntity<UserDTO> findByEmail(@PathVariable String email) {
-        User user = userService.findByEmail(email);
-        UserDTO userDTO = userMapper.toDTO(user);
+        AppUser appUser = userService.findByEmail(email);
+        UserDTO userDTO = userMapper.toDTO(appUser);
         return ResponseEntity.ok(userDTO);
     }
 

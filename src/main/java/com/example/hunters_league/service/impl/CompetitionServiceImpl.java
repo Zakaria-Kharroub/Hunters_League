@@ -1,7 +1,6 @@
 package com.example.hunters_league.service.impl;
 
 import com.example.hunters_league.domain.Competition;
-import com.example.hunters_league.domain.User;
 import com.example.hunters_league.repository.CompetitionRepository;
 import com.example.hunters_league.service.CompetitionService;
 import com.example.hunters_league.service.dto.CompetitionDTO;

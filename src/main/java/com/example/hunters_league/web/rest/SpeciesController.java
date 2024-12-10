@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class SpeciesController {
         this.speciesMapper = speciesMapper;
     }
 
+    @PreAuthorize("hasRole('JURY')")
     @PostMapping("/save")
     public ResponseEntity<SpeciesDTO> save(@RequestBody SpeciesVM speciesVM) {
 //        if (speciesVM.getCategory() == null) {
@@ -42,6 +44,7 @@ public class SpeciesController {
         return new ResponseEntity<>(speciesDTO, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('JURY')")
     @GetMapping("/")
     public ResponseEntity<List<SpeciesDTO>> findAll() {
         List<Species> speciesList = speciesService.findAll();
@@ -73,6 +76,9 @@ public class SpeciesController {
         return ResponseEntity.ok(speciesDTO);
     }
 
+
+
+    @PreAuthorize("hasRole('JURY')")
     @PutMapping("/update/{id}")
     public ResponseEntity<SpeciesDTO> updateById(@PathVariable UUID id, @RequestBody SpeciesVM speciesVM) {
         Species species = speciesMapper.toEntity(speciesVM);

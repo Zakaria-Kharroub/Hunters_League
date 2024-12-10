@@ -8,6 +8,7 @@ spring:
     enabled: true
     change-log: db/changelog/master.yaml
 
+
   jpa:
     properties:
       hibernate:
@@ -15,6 +16,16 @@ spring:
         open-in-view: false
         show_sql: true
 
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: spring-https
+    key-store: classpath:java.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    key-password: password
 
-
-#  port: 8080  # Change this to your desired port
+logging:
+  level:
+    web: error

@@ -1,6 +1,6 @@
 package com.example.hunters_league.service.impl;
 
-import com.example.hunters_league.domain.User;
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.repository.UserRepository;
 import com.example.hunters_league.service.UserService;
 import com.example.hunters_league.web.errors.user.UserNotFoundException;
@@ -18,20 +18,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(String username) {
-        User user = userRepository.findByUsername(username)
+        AppUser appUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("user not found"));
-        userRepository.delete(user);
+        userRepository.delete(appUser);
         return true;
     }
 
     @Override
-    public User findById(String id) {
+    public AppUser findById(String id) {
         return userRepository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new UserNotFoundException("user not found"));
     }
 
     @Override
-    public User findByEmail(String email) {
+    public AppUser findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("user not found"));
     }

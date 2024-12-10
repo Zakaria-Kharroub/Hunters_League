@@ -18,7 +18,7 @@ public class Participation{
     private UUID id;
 
     @ManyToOne
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
     private Competition competition;

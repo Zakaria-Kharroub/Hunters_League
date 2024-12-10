@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ParticipationMapper {
 
-    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "userId", target = "appUser.id")
     @Mapping(source = "competitionId", target = "competition.id")
     Participation toEntity(ParticipationVM participationVM);
 
-    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "appUser.id", target = "userId")
     @Mapping(source = "competition.id", target = "competitionId")
     ParticipationDTO toDTO(Participation participation);
 }

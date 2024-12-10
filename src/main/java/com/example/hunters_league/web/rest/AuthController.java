@@ -1,6 +1,6 @@
 package com.example.hunters_league.web.rest;
 
-import com.example.hunters_league.domain.User;
+import com.example.hunters_league.domain.AppUser;
 import com.example.hunters_league.service.AuthService;
 import com.example.hunters_league.service.dto.UserDTO;
 import com.example.hunters_league.web.vm.UserLoginVM;
@@ -31,8 +31,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserLoginVM userLoginVM) {
 
-        User user = userMapper.toEntity(userLoginVM);
-        boolean islogedIn = authService.login(user);
+        AppUser appUser = userMapper.toEntity(userLoginVM);
+        boolean islogedIn = authService.login(appUser);
         if(islogedIn) {
             return ResponseEntity.ok("Login Success");
         } else {
@@ -43,9 +43,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<UserDTO> register(@RequestBody UserRegisterVM userRegisterVM) {
 
-        User user = userMapper.toEntity(userRegisterVM);
-        User savedUser = authService.register(user);
-        UserDTO userDTO = userMapper.toDTO(savedUser);
+        AppUser appUser = userMapper.toEntity(userRegisterVM);
+        AppUser savedAppUser = authService.register(appUser);
+        UserDTO userDTO = userMapper.toDTO(savedAppUser);
         return new ResponseEntity<>(userDTO , HttpStatus.CREATED);
 
     }
