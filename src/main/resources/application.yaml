@@ -8,6 +8,7 @@ spring:
     enabled: true
     change-log: db/changelog/master.yaml
 
+
   jpa:
     properties:
       hibernate:
