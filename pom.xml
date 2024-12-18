@@ -30,10 +30,10 @@
         <java.version>17</java.version>
         <!-- SonarQube Properties -->
         <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.projectKey>Hunters-League</sonar.projectKey>
-        <sonar.projectName>Hunters-League</sonar.projectName>
+        <sonar.projectKey>huntersleague</sonar.projectKey>
+        <sonar.projectName>huntersleague</sonar.projectName>
         <sonar.projectVersion>0.0.1-SNAPSHOT</sonar.projectVersion>
-        <sonar.login>squ_05c8517cab01cc715af1d8321602b7e4f410d540</sonar.login>
+        <sonar.login>sqp_e6ba8383bf2265a16cb9200a8b9f6bdae3daad42</sonar.login>
     </properties>
     <dependencies>
         <dependency>
