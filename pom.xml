@@ -33,7 +33,7 @@
         <sonar.projectKey>huntersleague</sonar.projectKey>
         <sonar.projectName>huntersleague</sonar.projectName>
         <sonar.projectVersion>0.0.1-SNAPSHOT</sonar.projectVersion>
-        <sonar.login>sqp_e6ba8383bf2265a16cb9200a8b9f6bdae3daad42</sonar.login>
+        <sonar.login>squ_9e5ff22ec9c306f8be5ae4d0acd56b77787a5d67</sonar.login>
     </properties>
     <dependencies>
         <dependency>
