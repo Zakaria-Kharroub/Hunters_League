@@ -21,15 +21,15 @@ spring:
         open-in-view: false
         show_sql: true
 
-server:
-  port: 8443
-  ssl:
-    enabled: false
-    key-alias: spring-https
-    key-store: classpath:java.p12
-    key-store-password: password
-    key-store-type: PKCS12
-    key-password: password
+#server:
+#  port: 8443
+#  ssl:
+#    enabled: false
+#    key-alias: spring-https
+#    key-store: classpath:java.p12
+#    key-store-password: password
+#    key-store-type: PKCS12
+#    key-password: password
 
 logging:
   level:
