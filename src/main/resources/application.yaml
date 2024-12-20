@@ -24,7 +24,7 @@ spring:
 server:
   port: 8443
   ssl:
-    enabled: true
+    enabled: false
     key-alias: spring-https
     key-store: classpath:java.p12
     key-store-password: password

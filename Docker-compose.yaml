@@ -1,0 +1,45 @@
+services:
+  postgres:
+    container_name: samurai_devops_db
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_DB=samurai
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=samurai
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - samurai_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U samurai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    container_name: samurai_devops_app
+    image: 'hunters-league-devops:latest'
+    build:
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/samurai
+      - SPRING_DATASOURCE_USERNAME=samurai
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - '8446:8443'
+    networks:
+      - samurai_net
+
+networks:
+  samurai_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
