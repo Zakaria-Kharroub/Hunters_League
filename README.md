@@ -3,6 +3,13 @@
 ## Description du Projet
 Hunter's League est une application web conçue pour moderniser la gestion des compétitions du club de chasse Maska, situé à Québec. Ce système répond aux besoins des administrateurs, des membres, et des jurys, permettant une gestion efficace des inscriptions, des résultats, et des espèces impliquées dans les compétitions.
 
+---
+
+![Thumbnail 1](https://github.com/Zakaria-Kharroub/Hunters_League/blob/621e5fdf2ab14330018c33e456bffd13cf11d60e/hunters-league.webp)
+
+---
+
+
 ## Objectifs Principaux
 - **Faciliter l'inscription** des membres aux compétitions.
 - **Gérer les résultats** et afficher les classements des compétitions.
